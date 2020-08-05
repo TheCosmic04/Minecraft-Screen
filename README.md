@@ -15,7 +15,7 @@ A minecraft plugin that allows to share your screen in minecraft.
 4. now you can start the client by doing `node index.js`.
 
 ## Usage:
-1. First you have to install the [plugin]() in the server by putting it in your server plugin folder.
+1. First you have to install the [plugin](https://github.com/TheCosmic04/Minecraft-Screen/releases/tag/1.0) in the server by putting it in your server plugin folder.
 2. Create a screen using the command `/screen create [width] <height>` (if the height is not provided the server will automaticly generate it based on the given width).
 2. Once the screen was created it will give a token (if the token wasnt given you can get it with `/screen info all`), you can click on the token to copy it.
 3. Once you have the token start the nodejs client using ina  cmd inside the folder `node index.js`.
