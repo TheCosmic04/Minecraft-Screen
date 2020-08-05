@@ -10,7 +10,7 @@ A minecraft plugin that allows to share your screen in minecraft.
 
 ## Client installation:
 1. You will need to install [node js](https://nodejs.org/).
-2. download the [node js client](/nodejs/client).
+2. download the [node js client](/nodejs).
 3. open a cmd in the folder and execute this command `npm i jimp` then `npm i robotjs` (**Note**: if there are some errors while installing `robotjs` try start a cmd as administrator and use `npm install --global windows-build-tools`).
 4. now you can start the client by doing `node index.js`.
 
