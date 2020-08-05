@@ -301,12 +301,7 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
 
             Screen screen = ScreenManager.getScreen(args[1]);
 
-            Material[][] pixels = screen.getPixels();
-            for (Material[] pixel : pixels) {
-                Arrays.fill(pixel, block);
-            }
-
-            screen.setPixels(pixels, true);
+            screen.fill(block);
 
             Util.sendSuccessMessage(executor, "Successfully filled the screen with "+ args[2].toLowerCase());
             return true;
