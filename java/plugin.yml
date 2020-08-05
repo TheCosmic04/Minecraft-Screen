@@ -1,0 +1,10 @@
+name: mc-screen
+version: 1.15.2
+author: The_Cosmic_
+main: mc_screen.Main
+api-version: "1.13"
+commands:
+  screen:
+    usage: /screen <create|delete|info|setpixel|fill>
+    description: creates a screen
+
