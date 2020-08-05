@@ -1,6 +1,6 @@
 # MinecraftScreens
 
-A 1.15.2 minecraft plugin that allows to share your screen in minecraft.
+A 1.15.2 minecraft plugin that allows to share your screen in minecraft. (this plugin was inspired by Fundy's video [I made minecraft in minecraft](https://youtu.be/BNwQf6nuvMc))
 
 ## Requirements to screen share:
 - nodejs
