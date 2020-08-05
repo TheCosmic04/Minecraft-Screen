@@ -39,6 +39,13 @@ public class PacketHandler {
                 }
 
                 if (screen.getUsed()) {
+                    byte[] packet_data = {0x00};
+                    output.write(ServerUtil.packet(0x01, packet_data));
+                    return;
+                }
+
+                /*
+                if (screen.getUsed()) {
                     for (Client _client : Server.getClients()) {
                         if (_client.getScreen() == screen) {
                             if (!_client.isInterrupted() && !_client.getClient().isClosed() && !_client.getClient().isInputShutdown() && _client.getClient().isConnected()) {
@@ -49,6 +56,7 @@ public class PacketHandler {
                         }
                     }
                 }
+                */
 
                 client.setScreen(screen);
                 screen.setUsed(true);
