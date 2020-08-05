@@ -1,6 +1,6 @@
 # MinecraftScreens
 
-A minecraft plugin that allows to share your screen in minecraft.
+A 1.15.2 minecraft plugin that allows to share your screen in minecraft.
 
 ## Requirements to screen share:
 - nodejs
@@ -21,6 +21,18 @@ A minecraft plugin that allows to share your screen in minecraft.
 3. Once you have the token start the nodejs client using ina  cmd inside the folder `node index.js`.
 4. The client will ask you the ip of the server, if the server is not on localhost type the server ip, then it will ask the port where the plugin server is opened (default: 1234) if the port was changed type the custom port, then fianlly it will ask you the screen token.
 5. If everything was sucessfull the client will say the screen size in console and start shating the screen, if it wasnt sucessfull because the token is invalid or the screen is already begin used it will ask the screen token again.
+
+## Edit and build:
+Dipendencies: spigot 1.15.2
+
+Intellij:
+1. create a new java project.
+2. download [spigot build tools](https://hub.spigotmc.org/jenkins/job/BuildTools/) and use the command `java -jar BuildTools.jar --rev 1.15.2` to generate the library.
+3. go in `File > Project Structure > Modules > Dipendencies` and press the `+` button on the left, select `jars` and add the jar file generated with the build tools.
+4. download the [plugin src](https://github.com/TheCosmic04/Minecraft-Screen/tree/master/java).
+5. put all the files in the src folder isnide your project.
+6. edit the code
+7. after editing the code to build it go in `File > Project Structure > Artifacts` press the `+` button at the top, select `JAR > from module with dipendencies`, then to build go to `Build > Build Artifacts > Build`.
 
 ## Planed features:
 - [x] Support multiple screens at once.
