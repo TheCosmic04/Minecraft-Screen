@@ -22,6 +22,13 @@ A 1.15.2 minecraft plugin that allows to share your screen in minecraft.
 4. The client will ask you the ip of the server, if the server is not on localhost type the server ip, then it will ask the port where the plugin server is opened (default: 1234) if the port was changed type the custom port, then fianlly it will ask you the screen token.
 5. If everything was sucessfull the client will say the screen size in console and start shating the screen, if it wasnt sucessfull because the token is invalid or the screen is already begin used it will ask the screen token again.
 
+## Command usage:
+ - /screen create [width] <height> - Create a screen with the given width and height (**Note**: if the height wasnt given the plugin will generate it based on the width).
+ - /screen delete [token] - will delete the screen with the given token.
+ - /screen info [token|all] - will give info such as token, position, resolution, ... about a specific screen or all screens.
+ - /screen setpixel [token] [pixel-x] [pixel-y] [block] - will change the specified pixel of the screen with the given block. 
+ - /screen fill [token] [block] - will fill the scpecified screen with the given block.
+
 ## Edit and build:
 Dipendencies: spigot 1.15.2
 
@@ -37,4 +44,6 @@ Intellij:
 ## Planed features:
 - [x] Support multiple screens at once.
 - [ ] Config files.
+- [ ] Config for the nodejs client.
+- [ ] Screen persist after restarts.
 - [ ] Screen interaction (mouse click and typing).
