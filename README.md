@@ -47,3 +47,4 @@ Intellij:
 - [ ] Config for the nodejs client.
 - [ ] Screen persist after restarts.
 - [ ] Screen interaction (mouse click and typing).
+- [ ] Optimize immage rendering using workers.
