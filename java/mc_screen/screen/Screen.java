@@ -129,6 +129,14 @@ public class Screen {
             this.update();
     }
 
+    public void fill(Material material) {
+        for (Material[] pixel : pixels) {
+            Arrays.fill(pixel, material);
+        }
+
+        update();
+    }
+
     public boolean isInScreen(Location location) {
         if (!enable)
             return false;

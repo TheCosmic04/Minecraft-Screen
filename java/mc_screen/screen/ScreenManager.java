@@ -42,7 +42,7 @@ public class ScreenManager {
 
     public static boolean isScreenBlock(Block block) {
         for (Screen screen : screenList.values()) {
-            if (screen.isInScreen(block.getLocation()))
+            if (screen.getEnable() && screen.isInScreen(block.getLocation()))
                 return true;
         }
         return false;
@@ -52,6 +52,7 @@ public class ScreenManager {
         if (!screenList.containsKey(token))
             return false;
 
+        screenList.get(token).fill(Material.AIR);
         screenList.get(token).setEnable(false);
         screenList.remove(token);
         return true;
@@ -63,10 +64,7 @@ public class ScreenManager {
             return false;
 
         String token = screen.getToken();
-
-        screenList.get(token).setEnable(false);
-        screenList.remove(token);
-        return true;
+        return deleteScreen(token);
     }
 
     public static Screen getScreen(String token) {
