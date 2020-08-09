@@ -11,7 +11,7 @@ A 1.15.2 minecraft plugin that allows to share your screen in minecraft. (this p
 ## Client installation:
 1. You will need to install [node js](https://nodejs.org/).
 2. download the [node js client](/nodejs).
-3. open a cmd in the folder and execute this command `npm i jimp` then `npm i robotjs` (**Note**: if there are some errors while installing `robotjs` try start a cmd as administrator and use `npm install --global windows-build-tools`).
+3. open a cmd in the folder and execute this command `npm i jimp robotjs` (**Note**: if there are some errors while installing `robotjs` try start a cmd as administrator and use `npm install --global windows-build-tools`).
 4. now you can start the client by doing `node index.js`.
 
 ## Usage:
@@ -39,7 +39,7 @@ Intellij:
 4. download the [plugin src](/java).
 5. put all the files in the src folder isnide your project.
 6. edit the code
-7. after editing the code to build it go in `File > Project Structure > Artifacts` press the `+` button at the top, select `JAR > from module with dipendencies`, then to build go to `Build > Build Artifacts > Build`.
+7. after editing the code to build it go in `File > Project Structure > Artifacts` press the `+` button at the top, select `JAR > from module with dependencies`, then to build go to `Build > Build Artifacts > Build`.
 
 ## Planed features:
 - [x] Support multiple screens at once.
