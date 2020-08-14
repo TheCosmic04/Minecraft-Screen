@@ -21,6 +21,7 @@ var config = {
 setup();
 
 function setup(state = 0) {
+    if (state == 0) config = loadConfig();
     console.clear();
     logServerInfo();
 
@@ -71,7 +72,6 @@ function setup(state = 0) {
             socket.once("ready", () => {
                 remote_server.state = "[connected]";
                 setup(++state);
-                config = loadConfig();
             })
             socket.on("error", (err) => {
                 log(`\nCouldnt connect to ${remote_server.host}:${remote_server.port}!\n`);
