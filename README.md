@@ -58,4 +58,4 @@ To edit the configs go to the [config.json file](/nodejs/config.json) and edit t
 - [ ] Config files for plugin.
 - [ ] Screen persist after restarts.
 - [ ] Screen interaction (mouse click and typing).
-- ~~[ ] Optimize immage rendering using workers.~~ (Workers took too much resources slowing down the process by a lot)
+- [ ] ~~Optimize immage rendering using workers.~~ (Workers took too much resources slowing down the process by a lot)
