@@ -45,7 +45,7 @@ Intellij:
 6. edit the code
 7. after editing the code to build it go in `File > Project Structure > Artifacts` press the `+` button at the top, select `JAR > from module with dependencies` (Leave default options), then to build go to `Build > Build Artifacts > Build`.
 
-##Client configs:
+## Client configs:
 To edit the configs go to the [config.json file](/nodejs/config.json) and edit the json fields. (**Note**: if a field is invalid the default value will be choosen).
 
 - **host**: Default host when you start the client. (Default: "localhost")
