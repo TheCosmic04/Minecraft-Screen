@@ -1,7 +1,5 @@
 var net = require("net");
 var robot = require("robotjs");
-var sleep = require("system-sleep");
-var nearestColor = require('nearest-color');
 var Jimp = require("jimp");
 
 var readline = require("readline");
@@ -14,7 +12,7 @@ var screen = {width: 0, height: 0, sucess: false};
 var colors = require("./maps/block-colors.json");
 var name_to_id = require("./maps/name_to_id.json");
 
-var options = {
+var config = {
     running: true,
     fsp: 20
 }
@@ -73,6 +71,7 @@ function setup(state = 0) {
             socket.once("ready", () => {
                 remote_server.state = "[connected]";
                 setup(++state);
+                config = loadConfig();
             })
             socket.on("error", (err) => {
                 log(`\nCouldnt connect to ${remote_server.host}:${remote_server.port}!\n`);
@@ -103,18 +102,12 @@ function setup(state = 0) {
 function start() {
     console.log("\nStarting...");
     let interval = setInterval(function() {
-        if (!options.running)
+        if (!config.running)
             clearInterval(this);
 
-        update(options);
-    }, 1000/options.fps)
-    
-    // while (options.running) {
-    //     //console.log(options)
-    //     update(options);
+        update(config);
+    }, 1000/config.fps);
 
-    //     sleep(1000/options.fsp);
-    // }
 }
 
 function update() {
@@ -168,6 +161,29 @@ function initilizeConnection(socket, token) {
     });
 
     socket.write(packet_util.packet(0x01, Buffer.from(token)));
+}
+
+function loadConfig() {
+    let config = {
+        host: "localhost",
+        port: "1234",
+        fps: 10
+    }
+
+    try {
+        let data = require("./config.json");
+        if (typeof data.host == "string")
+            config.host = data.host;
+        if (typeof data.port == "string");
+            config.host = data.port;
+        if (typeof data.fps == "number");
+            config.host = Math.min(20, Math.abs(data.host));
+
+    } catch (err) {
+        return config;
+    }
+
+    return config;
 }
 
 
@@ -259,16 +275,6 @@ function logServerInfo() {
     log(`State: ${remote_server.state}\n`);
     log(`--------------------------------------------\n`);
 }
-
-function rgbToHex(r, g, b) {
-    return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
-}
-
-function componentToHex(component) {
-    var hex = component.toString(16);
-    return hex.length == 1 ? `0${hex}` : `${hex}`;
-}
-
 
 function log(message) {
     process.stdout.write(message);

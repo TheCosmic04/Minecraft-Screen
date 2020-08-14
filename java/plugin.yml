@@ -8,3 +8,23 @@ commands:
     usage: /screen <create|delete|info|setpixel|fill>
     description: creates a screen
 
+permissions:
+  screen.*:
+    default: op
+    children:
+      screen.create: true
+      screen.delete: true
+      screen.info: true
+      screen.edit: true
+
+  screen.create:
+    default: op
+
+  screen.delete:
+    default: op
+
+  screen.info:
+    default: op
+
+  screen.edit:
+    default: op

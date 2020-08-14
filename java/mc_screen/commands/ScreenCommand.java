@@ -33,9 +33,11 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
         pluginCommand.setTabCompleter(this);
     }
 
+    /*
     public boolean hasPermissions(CommandSender executor, String name) {
         return executor.hasPermission("screen.*") || executor.hasPermission("screen."+name) || executor.isOp();
     }
+    */
 
     @Override
     public boolean onCommand(CommandSender executor, Command command, String name, String[] args) {
@@ -46,7 +48,7 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
 
-            if (!hasPermissions(executor, "create")) {
+            if (!executor.hasPermission("screen.create")) {
                 Util.sendErrorMessage(executor, "Insufficient permissions to execute this command! (missing: screen.create)");
                 return true;
             }
@@ -99,7 +101,7 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
             return true;
         }
         else if (args[0].equalsIgnoreCase("delete") || args[0].equalsIgnoreCase("remove")) {
-            if (!hasPermissions(executor, "delete")) {
+            if (!executor.hasPermission("screen.delete")) {
                 Util.sendErrorMessage(executor, "Insufficient permissions to execute this command! (missing: screen.delete)");
                 return true;
             }
@@ -126,7 +128,7 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
 
         }
         else if (args[0].equalsIgnoreCase("info")) {
-            if (!hasPermissions(executor, "info")) {
+            if (!executor.hasPermission("screen.info")) {
                 Util.sendErrorMessage(executor, "Insufficient permissions to execute this command! (missing: screen.delete)");
                 return true;
             }
@@ -243,7 +245,7 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
 
         }
         else if (args[0].equalsIgnoreCase("setpixel")) {
-            if (!hasPermissions(executor, "edit")) {
+            if (!executor.hasPermission("screen.edit")) {
                 Util.sendErrorMessage(executor, "Insufficient permissions to execute this command! (missing: screen.edit)");
                 return true;
             }
@@ -279,7 +281,7 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
 
         }
         else if (args[0].equalsIgnoreCase("fill")) {
-            if (!hasPermissions(executor, "edit")) {
+            if (!executor.hasPermission("screen.edit")) {
                 Util.sendErrorMessage(executor, "Insufficient permissions to execute this command! (missing: screen.edit)");
                 return true;
             }
@@ -315,13 +317,13 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
         List<String> tabComplete = new ArrayList<String>();
 
         if (args.length == 1) {
-            if (hasPermissions(executor, "create"))
+            if (executor.hasPermission("screen.create"))
                 tabComplete.add("create");
-            if (hasPermissions(executor, "delete"))
+            if (executor.hasPermission("screen.delete"))
                 tabComplete.add("delete");
-            if (hasPermissions(executor, "info"))
+            if (executor.hasPermission("screen.info"))
                 tabComplete.add("info");
-            if (hasPermissions(executor, "edit")) {
+            if (executor.hasPermission("screen.edit")) {
                 tabComplete.add("setpixel");
                 tabComplete.add("fill");
             }
@@ -329,32 +331,32 @@ public class ScreenCommand implements CommandExecutor, TabCompleter {
         }
         else if (args.length == 2) {
             String subCommand = args[0];
-            if (subCommand.equalsIgnoreCase("delete") && hasPermissions(executor, "delete")) {
+            if (subCommand.equalsIgnoreCase("delete") && executor.hasPermission("screen.delete")) {
                 tabComplete.add("all");
                 tabComplete.addAll(Arrays.asList(ScreenManager.getTokens()));
             }
-            else if (subCommand.equalsIgnoreCase("info") && hasPermissions(executor, "info")) {
+            else if (subCommand.equalsIgnoreCase("info") && executor.hasPermission("screen.info")) {
                 tabComplete.add("all");
                 tabComplete.addAll(Arrays.asList(ScreenManager.getTokens()));
             }
-            else if (subCommand.equalsIgnoreCase("setpixel") && hasPermissions(executor, "edit")) {
+            else if (subCommand.equalsIgnoreCase("setpixel") && executor.hasPermission("screen.edit")) {
                 tabComplete.addAll(Arrays.asList(ScreenManager.getTokens()));
             }
-            else if (subCommand.equalsIgnoreCase("fill") && hasPermissions(executor, "edit")) {
+            else if (subCommand.equalsIgnoreCase("fill") && executor.hasPermission("screen.edit")) {
                 tabComplete.addAll(Arrays.asList(ScreenManager.getTokens()));
             }
         }
         else if (args.length == 3) {
             String subCommand = args[0];
 
-            if (subCommand.equalsIgnoreCase("fill") && hasPermissions(executor, "edit")) {
+            if (subCommand.equalsIgnoreCase("fill") && executor.hasPermission("screen.edit")) {
                 tabComplete.addAll(BlockUtils.getBlockNames());
             }
         }
         else if (args.length == 5) {
             String subCommand = args[0];
 
-            if (subCommand.equalsIgnoreCase("setpixel") && hasPermissions(executor, "edit")) {
+            if (subCommand.equalsIgnoreCase("setpixel") && executor.hasPermission("screen.edit")) {
                 tabComplete.addAll(BlockUtils.getBlockNames());
             }
         }

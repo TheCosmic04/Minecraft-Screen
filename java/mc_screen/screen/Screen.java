@@ -130,11 +130,13 @@ public class Screen {
     }
 
     public void fill(Material material) {
-        for (Material[] pixel : pixels) {
+        Material[][] blocks = new Material[height][width];
+
+        for (Material[] pixel : blocks) {
             Arrays.fill(pixel, material);
         }
 
-        update();
+        setPixels(blocks, true);
     }
 
     public boolean isInScreen(Location location) {

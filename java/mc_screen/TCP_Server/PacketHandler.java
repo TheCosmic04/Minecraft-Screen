@@ -7,6 +7,7 @@ import mc_screen.screen.ScreenManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -121,6 +122,38 @@ public class PacketHandler {
             }
 
         }
-    }
+        else if (id == 0x03) {
+            if (client.getScreen() == null)
+                return;
 
+            Material block = BlockUtils.getBlock(data[0]);
+
+            Bukkit.getScheduler().runTask(plugin, new BukkitRunnable() {
+                @Override
+                public void run() {
+                    client.getScreen().fill(block);
+                }
+            });
+        }
+        else if (id == 0x04) {
+            if (client.getScreen() == null)
+                return;
+
+            ByteBuffer buffer = ByteBuffer.wrap(data);
+
+            int x = buffer.getInt();
+            int y = buffer.getInt(4);
+
+            Material block = BlockUtils.getBlock(buffer.get(8));
+
+            Bukkit.getScheduler().runTask(plugin, new BukkitRunnable() {
+                @Override
+                public void run() {
+                    client.getScreen().setPixel(x, y, block);
+
+                }
+            });
+        }
+
+    }
 }
