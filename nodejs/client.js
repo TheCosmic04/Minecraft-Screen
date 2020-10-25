@@ -12,7 +12,7 @@ var screen = {width: 0, height: 0, sucess: false};
 var colors = require("./maps/block-colors.json");
 var name_to_id = require("./maps/name_to_id.json");
 
-var config = {
+var options = {
     running: true,
     fsp: 20
 }
@@ -21,7 +21,6 @@ var config = {
 setup();
 
 function setup(state = 0) {
-    if (state == 0) config = loadConfig();
     console.clear();
     logServerInfo();
 
@@ -102,12 +101,12 @@ function setup(state = 0) {
 function start() {
     console.log("\nStarting...");
     let interval = setInterval(function() {
-        if (!config.running)
+        if (!options.running)
             clearInterval(this);
 
-        update(config);
-    }, 1000/config.fps);
-
+        update(options);
+    }, 1000/options.fps)
+    
 }
 
 function update() {
@@ -132,8 +131,6 @@ function parseImg(obj, width, height) {
             for (let x = 0; x < width; x++) {
                 let rgb = Jimp.intToRGBA( img.getPixelColor(x, y) );
 
-                //let hex = rgbToHex(rgb.r, rgb.g, rgb.b);
-                //console.log(getNearestColor(rgb.r, rgb.g, rgb.b));
                 pixels[y][x] = name_to_id[getNearestColor(rgb.r, rgb.g, rgb.b)];
             }
         }
@@ -161,29 +158,6 @@ function initilizeConnection(socket, token) {
     });
 
     socket.write(packet_util.packet(0x01, Buffer.from(token)));
-}
-
-function loadConfig() {
-    let config = {
-        host: "localhost",
-        port: "1234",
-        fps: 10
-    }
-
-    try {
-        let data = require("./config.json");
-        if (typeof data.host == "string")
-            config.host = data.host;
-        if (typeof data.port == "string");
-            config.host = data.port;
-        if (typeof data.fps == "number");
-            config.host = Math.min(20, Math.abs(data.host));
-
-    } catch (err) {
-        return config;
-    }
-
-    return config;
 }
 
 
@@ -230,6 +204,11 @@ function handlePacket(id, size, data) {
 
             process.exit();
             break;
+        case 0x03:
+            let x = data.readInt32BE();
+            let y = data.readInt32BE(4);
+
+            
     }
 }
 
@@ -275,6 +254,16 @@ function logServerInfo() {
     log(`State: ${remote_server.state}\n`);
     log(`--------------------------------------------\n`);
 }
+
+function rgbToHex(r, g, b) {
+    return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
+}
+
+function componentToHex(component) {
+    var hex = component.toString(16);
+    return hex.length == 1 ? `0${hex}` : `${hex}`;
+}
+
 
 function log(message) {
     process.stdout.write(message);
