@@ -21,6 +21,7 @@ var options = {
 setup();
 
 function setup(state = 0) {
+    if (state == 0 && require("fs").existsSync("./config.json")) config = loadConfig();
     console.clear();
     logServerInfo();
 
@@ -246,6 +247,30 @@ function getNearestColor(r, g, b) {
     //console.log(map.sort((a, b) => a.value > b.value));
     return map.sort((a, b) => a.value - b.value)[0].color;
 }
+
+function loadConfig() {
+    let config = {
+        host: "localhost",
+        port: "1234",
+        fps: 10
+    }
+
+    try {
+        let data = require("./config.json");
+        if (typeof data.host == "string")
+            config.host = data.host;
+        if (typeof data.port == "string");
+            config.port = data.port;
+        if (typeof data.fps == "number");
+            config.fps = Math.min(20, Math.abs(data.fps));
+
+    } catch (err) {
+        return config;
+    }
+
+    return config;
+}
+
 
 function logServerInfo() {
     log(`--------------------------------------------\n`);

@@ -22,7 +22,7 @@ To start the client now use `node client.js`
 4. Now follow the instructions to [setup the client](#client-setup).
 5. Once you have the token and have the client setup start the nodejs client using in a cmd inside the folder `node client.js`.
 6. The client will ask you the ip of the server, if the server is not on localhost type the server ip, then it will ask the port where the plugin server is opened (default: 1234) if the port was changed type the custom port, then fianlly it will ask you the screen token.
-7. If everything was sucessfull the client will say the screen size in console and start shating the screen, if it wasnt sucessfull because the token is invalid or the screen is already begin used it will ask the screen token again.
+7. If everything was sucessfull the client will say the screen size in console and start sharing the screen, if it wasnt sucessfull because the token is invalid or the screen is already begin used it will ask the screen token again.
 
 **Note**: Currently screens dont persist between restarts! after a server restart you will need to recreate the screen as all old ones wont work anymore.
 
@@ -55,6 +55,7 @@ To edit the configs go to the [config.json file](/nodejs/config.json) and edit t
 ## Planed features:
 - [x] Support multiple screens at once.
 - [x] Config for the nodejs client.
+- [ ] Map rendering (Screensharing screen on a map).
 - [ ] Config files for plugin.
 - [ ] Screen persist after restarts.
 - [ ] Screen interaction (mouse click and typing).
